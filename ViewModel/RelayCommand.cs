@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ViewModelBase
+namespace ViewModel
 {
-    public class RelayCommand : ICommand
+    class RelayCommand : ICommand
     {
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
         public RelayCommand(Action<object> execute)
-            : this(execute, _ => true)
+            : this(execute, null)
         {
         }
 
@@ -23,11 +22,6 @@ namespace ViewModelBase
             if (execute == null)
             {
                 throw new ArgumentNullException("execute");
-            }
-
-            if (canExecute == null)
-            {
-                throw new ArgumentNullException("canExecute");
             }
             _execute = execute;
             _canExecute = canExecute;
@@ -41,6 +35,10 @@ namespace ViewModelBase
 
         public bool CanExecute(object parameter)
         {
+            if (_canExecute == null)
+            {
+                return true;
+            }
             return _canExecute(parameter);
         }
 

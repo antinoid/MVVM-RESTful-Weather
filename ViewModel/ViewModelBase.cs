@@ -2,12 +2,12 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace View
+namespace ViewModel
 {
     /// <summary>
     /// Base view model class that implements INPC, OnPropertyChanged and SetValue
     /// </summary>
-    abstract class ViewModelBase : INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>
         /// Raised when a property on this object has a new value.
